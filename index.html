@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CachyOS — Desktop Metro UI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="desktop-shell">
+    <div class="workspace-area">
+      <!-- Pivot Header -->
+      <nav class="pivot-bar" aria-label="Navigasi Utama">
+        <div class="pivot-tabs">
+          <button class="pivot-tab active" data-view="start" type="button">start</button>
+          <button class="pivot-tab" data-view="system" type="button">tema &amp; sistem</button>
+        </div>
+        <div class="user-profile">
+          <div class="user-text">
+            <span class="user-name">pc@cachyos</span>
+            <span class="user-sub">Wayland • Metro Shell</span>
+          </div>
+          <div class="user-avatar">PC</div>
+        </div>
+      </nav>
+
+      <!-- Main Desktop Workspace -->
+      <main class="desktop-main">
+      <!-- VIEW 1: WIDESCREEN START SCREEN + DOCKED APP LIST -->
+      <section class="view active" id="view-start">
+        <div class="desktop-split">
+          <!-- Left: Live Tiles Area (2 Desktop Groups) -->
+          <div class="tiles-workspace">
+            <!-- Group 1: Utama & Sistem -->
+            <div class="tile-group">
+              <div class="group-title">utama &amp; sistem</div>
+              <div class="group-grid grid-main">
+                <!-- Wide: Clock & Date -->
+                <button class="tile span-4 tile-accent" data-app="Jam &amp; Kalender" type="button">
+                  <div class="clock-wrap">
+                    <div class="big-clock" id="tile-clock">14:48</div>
+                    <div class="big-date" id="tile-date">Selasa, 24 November 2026</div>
+                  </div>
+                  <span class="tile-label">Kalender</span>
+                </button>
+
+                <!-- Wide Flip: CachyOS Monitor -->
+                <button class="tile span-4 tile-teal live-flip" data-app="CachyOS Monitor" type="button">
+                  <div class="flip-inner">
+                    <div class="flip-face flip-front">
+                      <div class="sys-row">
+                        <div>
+                          <div class="sys-val">1.1 GB</div>
+                          <div class="sys-sub">RAM terpakai • zram aktif</div>
+                        </div>
+                        <span class="sys-badge">6.12-cachyos</span>
+                      </div>
+                      <div class="metro-bar"><div class="metro-bar-fill" style="width: 28%"></div></div>
+                      <span class="tile-label">CachyOS Monitor</span>
+                    </div>
+                    <div class="flip-face flip-back">
+                      <div class="sys-row">
+                        <div>
+                          <div class="sys-val">14%</div>
+                          <div class="sys-sub">CPU Load • 42°C Stabil</div>
+                        </div>
+                        <span class="sys-badge">SCHED-EXT</span>
+                      </div>
+                      <div class="metro-bar"><div class="metro-bar-fill" style="width: 14%"></div></div>
+                      <span class="tile-label">Performa</span>
+                    </div>
+                  </div>
+                </button>
+
+                <!-- Medium: Terminal -->
+                <button class="tile span-2 tile-dark" data-app="Konsole Terminal" type="button">
+                  <div class="tile-center">
+                    <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <polyline points="4 17 10 11 4 5" />
+                      <line x1="12" y1="19" x2="20" y2="19" />
+                    </svg>
+                    <span class="code-snippet">pacman -Syu</span>
+                  </div>
+                  <span class="tile-label">Terminal</span>
+                </button>
+
+                <!-- Medium: Files -->
+                <button class="tile span-2 tile-accent" data-app="Dolphin Files" type="button">
+                  <div class="tile-center">
+                    <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M3 6h6l2 2h10v11H3z" />
+                    </svg>
+                  </div>
+                  <span class="tile-label">File Manager</span>
+                </button>
+
+                <!-- Medium: Browser -->
+                <button class="tile span-2 tile-cobalt" data-app="Firefox" type="button">
+                  <div class="tile-center">
+                    <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="12" cy="12" r="9" />
+                      <line x1="3" y1="12" x2="21" y2="12" />
+                      <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z" />
+                    </svg>
+                  </div>
+                  <span class="tile-label">Firefox</span>
+                </button>
+
+                <!-- Medium: VS Code -->
+                <button class="tile span-2 tile-indigo" data-app="Visual Studio Code" type="button">
+                  <div class="tile-center">
+                    <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <polyline points="16 18 22 12 16 6" />
+                      <polyline points="8 6 2 12 8 18" />
+                    </svg>
+                  </div>
+                  <span class="tile-label">VS Code</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Group 2: Media & Pintasan -->
+            <div class="tile-group">
+              <div class="group-title">media &amp; pintasan</div>
+              <div class="group-grid grid-side">
+                <!-- Wide Flip: Weather -->
+                <button class="tile span-4 tile-cobalt live-flip delay-1" data-app="Cuaca" type="button">
+                  <div class="flip-inner">
+                    <div class="flip-face flip-front weather-front">
+                      <div>
+                        <div class="weather-temp">29°</div>
+                        <div class="weather-desc">Cerah Berawan</div>
+                      </div>
+                      <svg class="tile-icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <circle cx="12" cy="12" r="4" />
+                        <line x1="12" y1="2" x2="12" y2="5" />
+                        <line x1="12" y1="19" x2="12" y2="22" />
+                        <line x1="4.93" y1="4.93" x2="7.05" y2="7.05" />
+                        <line x1="16.95" y1="16.95" x2="19.07" y2="19.07" />
+                        <line x1="2" y1="12" x2="5" y2="12" />
+                        <line x1="19" y1="12" x2="22" y2="12" />
+                      </svg>
+                      <span class="tile-label">Cuaca • Jakarta</span>
+                    </div>
+                    <div class="flip-face flip-back">
+                      <div class="forecast-grid">
+                        <div><span>Besok</span><strong>30°</strong></div>
+                        <div><span>Kamis</span><strong>28°</strong></div>
+                        <div><span>Jumat</span><strong>27°</strong></div>
+                      </div>
+                      <span class="tile-label">Prakiraan 3 Hari</span>
+                    </div>
+                  </div>
+                </button>
+
+                <!-- Wide: Music Player -->
+                <button class="tile span-4 tile-magenta" id="music-tile" type="button">
+                  <div class="music-wrap">
+                    <div>
+                      <div class="music-status" id="music-status">SEDANG DIPUTAR</div>
+                      <div class="music-title">Midnight City — Lo-Fi Mix</div>
+                      <div class="music-sub">PipeWire Audio • Klik untuk jeda</div>
+                    </div>
+                    <div class="eq-bars" id="eq-bars" aria-hidden="true">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <span class="tile-label">Musik</span>
+                </button>
+
+                <!-- Medium: Octopi Store -->
+                <button class="tile span-2 tile-emerald" data-app="Octopi Package Manager" type="button">
+                  <div class="tile-center">
+                    <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M6 2L3 6v14h18V6l-3-4z" />
+                      <line x1="3" y1="6" x2="21" y2="6" />
+                      <path d="M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                  </div>
+                  <span class="tile-label">Octopi</span>
+                </button>
+
+                <!-- 4 Small Tiles Cluster -->
+                <div class="tile-cluster span-2">
+                  <button class="tile tile-small tile-crimson" data-app="Pesan" title="Pesan (3)" type="button">
+                    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <span class="tile-count">3</span>
+                  </button>
+                  <button class="tile tile-small tile-amber" data-app="Galeri" title="Galeri" type="button">
+                    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="3" y="3" width="18" height="18" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                  </button>
+                  <button class="tile tile-small tile-graphite" id="open-theme-tile" title="Tema &amp; Warna" type="button">
+                    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
+                    </svg>
+                  </button>
+                  <button class="tile tile-small tile-dark" id="lock-tile" title="Kunci Layar" type="button">
+                    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="5" y="11" width="14" height="10" />
+                      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Sidebar: Docked Windows Phone A-Z App List -->
+          <aside class="app-sidebar" aria-label="Daftar Aplikasi">
+            <div class="sidebar-head" id="sidebar-head">
+              <div class="group-title">semua aplikasi</div>
+              <input type="text" id="app-search" class="metro-search" placeholder="ketik nama aplikasi... (Esc tutup)" autocomplete="off" />
+            </div>
+
+            <div class="app-list" id="app-list">
+              <div class="app-group">
+                <div class="letter-tile">a</div>
+                <button class="app-item" data-app="Alacritty" type="button"><span class="app-sq">&gt;_</span> Alacritty</button>
+              </div>
+              <div class="app-group">
+                <div class="letter-tile">c</div>
+                <button class="app-item" data-app="CachyOS Hello" type="button"><span class="app-sq">C</span> CachyOS Hello</button>
+                <button class="app-item" data-app="CachyOS Package Installer" type="button"><span class="app-sq">P</span> Package Installer</button>
+              </div>
+              <div class="app-group">
+                <div class="letter-tile">d</div>
+                <button class="app-item" data-app="Dolphin" type="button"><span class="app-sq">D</span> Dolphin Files</button>
+              </div>
+              <div class="app-group">
+                <div class="letter-tile">f</div>
+                <button class="app-item" data-app="Firefox" type="button"><span class="app-sq">F</span> Firefox</button>
+              </div>
+              <div class="app-group">
+                <div class="letter-tile">k</div>
+                <button class="app-item" data-app="Konsole" type="button"><span class="app-sq">K</span> Konsole</button>
+              </div>
+              <div class="app-group">
+                <div class="letter-tile">o</div>
+                <button class="app-item" data-app="Octopi" type="button"><span class="app-sq">O</span> Octopi</button>
+              </div>
+              <div class="app-group">
+                <div class="letter-tile">s</div>
+                <button class="app-item" data-app="Steam" type="button"><span class="app-sq">St</span> Steam</button>
+                <button class="app-item" data-app="System Settings" type="button"><span class="app-sq">S</span> System Settings</button>
+              </div>
+              <div class="app-group">
+                <div class="letter-tile">v</div>
+                <button class="app-item" data-app="Visual Studio Code" type="button"><span class="app-sq">{ }</span> Visual Studio Code</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- VIEW 2: TEMA & SISTEM -->
+      <section class="view" id="view-system">
+        <div class="settings-grid">
+          <div class="setting-block">
+            <h2>warna aksen</h2>
+            <p class="setting-desc">Ubah warna utama khas Metro UI di seluruh Live Tiles dan elemen aktif.</p>
+            <div class="swatch-grid" id="swatch-grid">
+              <button class="swatch active" data-accent="#00aba9" style="background:#00aba9" title="CachyOS Teal" type="button"></button>
+              <button class="swatch" data-accent="#1ba1e2" style="background:#1ba1e2" title="Lumia Cyan" type="button"></button>
+              <button class="swatch" data-accent="#60a917" style="background:#60a917" title="Lime" type="button"></button>
+              <button class="swatch" data-accent="#e51400" style="background:#e51400" title="Crimson" type="button"></button>
+              <button class="swatch" data-accent="#fa6800" style="background:#fa6800" title="Orange" type="button"></button>
+              <button class="swatch" data-accent="#d80073" style="background:#d80073" title="Magenta" type="button"></button>
+              <button class="swatch" data-accent="#6a00ff" style="background:#6a00ff" title="Indigo" type="button"></button>
+              <button class="swatch" data-accent="#f0a30a" style="background:#f0a30a" title="Amber" type="button"></button>
+            </div>
+          </div>
+
+          <div class="setting-block">
+            <h2>latar belakang</h2>
+            <p class="setting-desc">Mode gelap hitam pekat paling irit daya dan paling ikonik.</p>
+            <div class="toggle-row">
+              <button class="metro-btn active" id="theme-dark-btn" type="button">Gelap (Hitam Pekat)</button>
+              <button class="metro-btn" id="theme-light-btn" type="button">Terang (Putih Polos)</button>
+            </div>
+          </div>
+
+          <div class="setting-block">
+            <h2>animasi live tiles</h2>
+            <p class="setting-desc">Matikan jika ingin tampilan statis super ringan.</p>
+            <div class="toggle-row">
+              <button class="metro-btn active" id="flip-on-btn" type="button">Live Flip Aktif</button>
+              <button class="metro-btn" id="flip-off-btn" type="button">Statis (Hemat GPU)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      </main>
+    </div>
+
+    <!-- Right Vertical Desktop Taskbar (Satu-satunya panel OS) -->
+    <aside class="taskbar-right-dock" aria-label="Taskbar Kanan">
+      <div class="taskbar-top">
+        <button class="task-start" id="bar-start" title="Start Screen" type="button">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="8" height="8" />
+            <rect x="13" y="3" width="8" height="8" />
+            <rect x="3" y="13" width="8" height="8" />
+            <rect x="13" y="13" width="8" height="8" />
+          </svg>
+        </button>
+
+        <button class="task-pin" data-app="Konsole Terminal" title="Terminal" type="button">&gt;_</button>
+        <button class="task-pin" data-app="Firefox" title="Firefox" type="button">FF</button>
+        <button class="task-pin" data-app="Dolphin Files" title="File Manager" type="button">FM</button>
+        <button class="task-pin" data-app="Visual Studio Code" title="VS Code" type="button">{ }</button>
+      </div>
+
+      <div class="taskbar-bottom">
+        <button class="task-icon-btn" id="bar-theme" title="Tema &amp; Sistem" type="button">
+          <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
+          </svg>
+        </button>
+        <button class="task-icon-btn" id="bar-lock" title="Kunci Layar" type="button">
+          <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="11" width="14" height="10" />
+            <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+          </svg>
+        </button>
+
+        <div class="task-divider"></div>
+
+        <div class="tray-vertical">
+          <span class="tray-icon" title="Wi-Fi Terhubung">
+            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+              <circle cx="12" cy="19.5" r="1" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="tray-icon" title="Volume 75%">
+            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            </svg>
+          </span>
+          <span class="tray-bat" title="Baterai 86%">86%</span>
+          <div class="tray-clock-box">
+            <span class="tray-time" id="top-clock">14:53</span>
+            <span class="tray-day" id="tray-day">24/11</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Lockscreen Overlay (Windows Phone Style) -->
+    <div class="lockscreen" id="lockscreen" aria-hidden="true">
+      <div class="lock-inner">
+        <div class="lock-clock" id="lock-clock">14:48</div>
+        <div class="lock-date" id="lock-date">Selasa, 24 November 2026</div>
+        <div class="lock-hint">Klik di mana saja atau tekan Enter / Spasi untuk masuk ke CachyOS</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
